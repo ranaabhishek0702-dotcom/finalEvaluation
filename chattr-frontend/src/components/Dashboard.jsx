@@ -43,6 +43,7 @@ export default function Dashboard() {
   return (
     <div className="dashboard-page">
       <div className="dashboard-container">
+        <div className="dashboard-inner">
           {/* Header */}
           <div className="dashboard-header">
             <div className="dashboard-title">
@@ -50,7 +51,7 @@ export default function Dashboard() {
               <p>Select a channel to start chatting</p>
             </div>
             <div className="user-info">
-              <div className="user-avatar">{username.charAt(0).toUpperCase()}</div>
+              <div className="user-avatar">{username?.charAt(0)?.toUpperCase()}</div>
               <div className="user-details">
                 <span className="username-label">Logged in as</span>
                 <span className="username-display">{username}</span>
@@ -80,6 +81,7 @@ export default function Dashboard() {
               ))}
             </div>
           </div>
+        </div>
       </div>
     </div>
   );

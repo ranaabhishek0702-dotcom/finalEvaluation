@@ -402,6 +402,17 @@ body {
   box-sizing: border-box;
 }
 
+/* Inner centered content area for dashboard (keeps background full-bleed) */
+.dashboard-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  box-sizing: border-box;
+}
+
 .dashboard-header {
   display: flex;
   justify-content: space-between;
