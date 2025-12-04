@@ -103,21 +103,49 @@ export default function ChatRoom() {
     navigate("/dashboard");
   };
 
+  const getChannelName = () => {
+    const channelMap = {
+      general: "General",
+      announcements: "Announcements",
+      random: "Random",
+      tech: "Tech Talk",
+      introductions: "Introductions"
+    };
+    return channelMap[room] || room;
+  };
+
+  const username = localStorage.getItem("username");
+
   return (
-    <div className="App">
-      <div className="app-container">
+    <div className="chatroom-page">
+      <div className="chatroom-container">
         <div className="chat-room">
           <div className="chat-header">
             <div className="chat-header-left">
-              <h1>Chattr</h1>
+              <div className="chat-header-title">
+                <div className="chat-app-logo">💬</div>
+                <div className="chat-header-content">
+                  <h1># {getChannelName()}</h1>
+                  <span className="channel-description">
+                    {room === "general" && "General discussion"}
+                    {room === "announcements" && "Important updates"}
+                    {room === "random" && "Off-topic fun"}
+                    {room === "tech" && "Tech discussions"}
+                    {room === "introductions" && "Introduce yourself"}
+                  </span>
+                </div>
+              </div>
               <div className="room-info">
-                <div className={`status-indicator ${isConnected ? '' : 'disconnected'}`}></div>
-                <span>#{room}</span>
+                <div className={`status-indicator ${isConnected ? 'connected' : 'disconnected'}`}></div>
+                <span className="status-text">{isConnected ? 'Connected' : 'Connecting...'}</span>
               </div>
             </div>
-            <button className="leave-channel-btn" onClick={handleLeaveChannel}>
-              ← Back to Channels
-            </button>
+            <div className="chat-header-right">
+              <span className="user-badge">{username}</span>
+              <button className="leave-channel-btn" onClick={handleLeaveChannel}>
+                ← Back
+              </button>
+            </div>
           </div>
           <MessageList messages={messages} />
           <MessageInput onSend={sendMessage} socket={socket} />
